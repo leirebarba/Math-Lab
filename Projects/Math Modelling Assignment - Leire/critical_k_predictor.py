@@ -29,15 +29,6 @@ def strogatz_integral_equation_residual(r, K, g):
     val, _ = quad(integrand, -np.pi/2, np.pi/2, limit=200)
     return 1.0 - K * val
 
-def strogatz_integral_equation_residual(r, K, g):
-    """
-    Residual of:
-      1 = K * ∫_{-pi/2}^{pi/2} cos^2(theta) * g(K r sin(theta)) dtheta
-    so residual(r) = 1 - RHS.
-    """
-    integrand = lambda th: (np.cos(th)**2) * g(K * r * np.sin(th))
-    val, _ = quad(integrand, -np.pi/2, np.pi/2, limit=200)
-    return 1.0 - K * val
 
 def r_theory_from_strogatz(K, g, Kc, r_max=0.999):
     """
@@ -179,7 +170,7 @@ def main():
     sigmas = [0.5, 1.0, 2.0]
 
     # Simulation parameters (tune if needed)
-    N = 200
+    N = 5000
     dt = 0.02
     T = 80.0
     tail_steps = 300
@@ -220,4 +211,8 @@ def main():
     plt.grid(True, alpha=0.3)
     plt.legend()
     plt.show()
+
+if __name__ == "__main__":
+    main()
+
 
