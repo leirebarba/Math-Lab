@@ -2,3 +2,5 @@ mathlab/
 __pycache__/
 *.pyc
 .DS_Store
+animations/
+figs/
